@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 80">
+  <defs>
+    <radialGradient id="balloonGrad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FFD6DF"/>
+      <stop offset="40%" stop-color="#E58B9C"/>
+      <stop offset="100%" stop-color="#9E354A"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="25" cy="32" rx="22" ry="26" fill="url(#balloonGrad)"/>
+  <ellipse cx="18" cy="22" rx="6" ry="10" fill="#FFF" opacity="0.45" transform="rotate(-20 18 22)"/>
+  <polygon points="22,57 28,57 25,62" fill="#9E354A"/>
+  <path d="M25 62 Q23 68 26 73 Q24 77 25 80" fill="none" stroke="#BA7988" stroke-width="1.5"/>
+</svg>

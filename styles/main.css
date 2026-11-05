@@ -1,0 +1,1499 @@
+/* ==========================================================================
+   "Saturday?" - Date Invitation Styling
+   Romantic, playful, warm, mobile-first, and motion-crafted.
+   ========================================================================== */
+
+/* --- Custom Properties & Theme Palette --- */
+:root {
+  /* Colors */
+  --bg-gradient-top: #3b2030;
+  --bg-gradient-mid: #251c33;
+  --bg-gradient-bot: #130f1e;
+
+  --color-rose-deep: #7A3951;
+  --color-rose-mid: #A44E68;
+  --color-rose-soft: #D9889B;
+  --color-rose-light: #FBECEF;
+
+  --color-gold-deep: #9E6B1D;
+  --color-gold-mid: #DCA23E;
+  --color-gold-soft: #F9D888;
+  --color-gold-glow: #FFE7A3;
+
+  --color-cream-base: #FAF3EB;
+  --color-cream-card: #FFFDF9;
+  --color-cream-paper: #FAF5EB;
+
+  --color-plum-btn: #5A2243;
+  --color-plum-hover: #481934;
+
+  --color-text-dark: #2B1D27;
+  --color-text-subtle: #6E5C69;
+  --color-text-muted: #8E7B89;
+  --color-text-light: #FDF8F3;
+
+  /* Fonts */
+  --font-serif-display: 'Cormorant Garamond', Georgia, serif;
+  --font-serif-prose: 'Lora', Georgia, serif;
+  --font-script: 'Caveat', 'Homemade Apple', cursive;
+  --font-ui: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0 16px 40px -10px rgba(18, 11, 25, 0.45), 0 0 1px 1px rgba(220, 162, 62, 0.2);
+  --shadow-paper: 0 10px 28px -6px rgba(45, 28, 39, 0.25);
+  --shadow-glow: 0 0 24px rgba(220, 162, 62, 0.35);
+
+  /* Easing */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+/* --- Global Reset & Mobile Foundation --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  width: 100%;
+  font-family: var(--font-serif-prose);
+  color: var(--color-text-dark);
+  background: radial-gradient(circle at 50% 15%, var(--bg-gradient-top) 0%, var(--bg-gradient-mid) 55%, var(--bg-gradient-bot) 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Screen reader utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Particle Canvas --- */
+.ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Camera Flash Overlay */
+.camera-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #ffffff 10%, #fff7ec 100%);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+.camera-flash.active {
+  opacity: 0.88;
+}
+
+/* --- Main Application Stage --- */
+.app-stage {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 24px 16px calc(48px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 20;
+}
+
+/* --- Scene Mechanics & Shared Card Styles --- */
+.scene {
+  width: 100%;
+  display: none;
+  opacity: 0;
+  transform: translateY(18px) scale(0.98);
+  transition: opacity 0.65s var(--ease-soft), transform 0.65s var(--ease-soft);
+}
+
+.scene.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* When Yes is pressed, Scenes 4, 5, 6 become a continuous vertical journey */
+.flow-after-yes .scene-4,
+.flow-after-yes .scene-5,
+.flow-after-yes .scene-6 {
+  display: block;
+  opacity: 1;
+  transform: none;
+  margin-bottom: 28px;
+}
+
+.scene-content {
+  width: 100%;
+  background: var(--color-cream-card);
+  border-radius: 24px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(220, 162, 62, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   SCENE 0: Knock Knock & Envelope
+   ========================================================================== */
+.scene-envelope-wrapper {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  text-align: center;
+  padding: 20px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.envelope-container {
+  width: 290px;
+  height: 200px;
+  position: relative;
+  margin: 10px auto 32px;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  perspective: 900px;
+  animation: envelopeDropIn 1.1s var(--ease-spring) forwards;
+}
+
+@keyframes envelopeDropIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-90px) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(6px) scale(1.02);
+  }
+  80% {
+    transform: translateY(-4px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Two distinct knocks shaking the envelope */
+.envelope.knocking {
+  animation: knockShake 1.2s ease-in-out;
+}
+
+@keyframes knockShake {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(-3deg) scale(1.02); }
+  25% { transform: rotate(3deg) scale(1.02); }
+  35% { transform: rotate(-1.5deg); }
+  45% { transform: rotate(0deg); }
+  60% { transform: rotate(-3.5deg) scale(1.03); }
+  70% { transform: rotate(3.5deg) scale(1.03); }
+  80% { transform: rotate(-1.5deg); }
+  90% { transform: rotate(0deg); }
+}
+
+.envelope {
+  width: 100%;
+  height: 185px;
+  background: #EEDFCF;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 14px 30px rgba(10, 6, 16, 0.45);
+  transition: transform 0.4s var(--ease-soft);
+  transform-style: preserve-3d;
+}
+
+.envelope:hover,
+.envelope-container:focus-visible .envelope {
+  transform: translateY(-4px);
+}
+
+.envelope-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #E4D3C2;
+  border-radius: 12px;
+}
+
+/* Peeking Letter Card */
+.envelope-card-peek {
+  position: absolute;
+  top: 15px;
+  left: 18px;
+  right: 18px;
+  height: 150px;
+  background: var(--color-cream-card);
+  border-radius: 8px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.6s var(--ease-spring);
+  z-index: 2;
+}
+
+.peek-line {
+  height: 8px;
+  background: #EADBCE;
+  border-radius: 4px;
+  width: 80%;
+}
+.peek-line.short {
+  width: 50%;
+}
+
+/* Envelope Pocket Fold */
+.envelope-pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 145px solid #F7ECE0;
+  border-right: 145px solid #F7ECE0;
+  border-top: 100px solid transparent;
+  border-bottom: 85px solid #EEDBCC;
+  border-radius: 0 0 12px 12px;
+  z-index: 3;
+}
+
+/* Flap & Wax Seal */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 145px solid transparent;
+  border-right: 145px solid transparent;
+  border-top: 110px solid #DFC9B4;
+  border-radius: 12px 12px 0 0;
+  transform-origin: top center;
+  transition: transform 0.75s var(--ease-soft), z-index 0.3s;
+  z-index: 4;
+}
+
+.wax-seal {
+  position: absolute;
+  top: -140px;
+  left: -28px;
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.wax-seal:hover {
+  transform: scale(1.08);
+}
+
+.wax-seal-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Shelf under envelope */
+.envelope-shelf {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 6px;
+  background: rgba(220, 162, 62, 0.4);
+  border-radius: 3px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+/* Opening Animation */
+.envelope-container.opening .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope-container.opening .envelope-card-peek {
+  transform: translateY(-80px);
+}
+
+.envelope-container.opening .wax-seal {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Scene 0 Text */
+.scene-0-text {
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.knock-title {
+  font-family: var(--font-serif-display);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.knock-subtitle {
+  font-family: var(--font-serif-prose);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #E6D0DE;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.tap-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(253, 248, 242, 0.12);
+  border: 1px solid rgba(220, 162, 62, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 8px 18px;
+  border-radius: 20px;
+  color: #F7EAD7;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tap-hint-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-gold-mid);
+  border-radius: 50%;
+  animation: pulseGoldDot 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseGoldDot {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.6); opacity: 1; }
+}
+
+/* ==========================================================================
+   SCENE 1: You're Right (Quiet, sincere, calendar animation)
+   ========================================================================== */
+.calendar-wrapper {
+  width: 100%;
+  max-width: 290px;
+  margin: 0 auto 24px;
+}
+
+.calendar-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Calendar page flip animations */
+.cal-page {
+  transform-origin: 25px 55px;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+}
+
+.cal-page.flipped {
+  transform: rotateX(85deg) translateY(-20px);
+  opacity: 0;
+}
+
+/* Hand drawn gold ring path animation */
+.gold-ring-path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  transition: stroke-dashoffset 1.4s ease-out;
+}
+
+.gold-ring-path.drawn {
+  stroke-dashoffset: 0;
+}
+
+/* Sincere prose text */
+.letter-body-prose {
+  text-align: left;
+  padding: 4px 6px;
+}
+
+.prose-line {
+  font-family: var(--font-serif-prose);
+  font-size: 1.14rem;
+  line-height: 1.7;
+  color: var(--color-text-dark);
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s var(--ease-soft), transform 0.8s var(--ease-soft);
+}
+
+.prose-line.line-1 {
+  font-family: var(--font-serif-display);
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: var(--color-rose-deep);
+  line-height: 1.25;
+}
+
+.prose-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scene-action-wrap {
+  margin-top: 24px;
+  text-align: right;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+}
+.scene-action-wrap.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Buttons */
+.btn-gentle-next,
+.btn-ask-question {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-rose-deep);
+  color: #FFF;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(122, 57, 81, 0.3);
+  transition: transform 0.25s var(--ease-spring), background 0.25s, box-shadow 0.25s;
+}
+
+.btn-gentle-next:hover,
+.btn-ask-question:hover {
+  transform: translateX(3px);
+  background: #8F425F;
+  box-shadow: 0 6px 18px rgba(122, 57, 81, 0.4);
+}
+
+.btn-arrow-icon {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+/* ==========================================================================
+   SCENE 2: Wherever you wish (Street, bags dropping, wish box)
+   ========================================================================== */
+.bags-counter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #F4E8E0;
+  border: 1px solid #DFC9BC;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-rose-deep);
+  margin-bottom: 16px;
+}
+
+.counter-value {
+  display: inline-block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-gold-deep);
+  min-width: 18px;
+  text-align: center;
+}
+
+.counter-value.pop {
+  animation: counterPop 0.3s var(--ease-spring);
+}
+
+@keyframes counterPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); color: var(--color-rose-deep); }
+  100% { transform: scale(1); }
+}
+
+.street-illustration-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.street-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Steam wisp animation */
+.steam-wisp-animated {
+  animation: steamDrift 3s ease-in-out infinite;
+}
+
+@keyframes steamDrift {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-4px) scaleY(1.15);
+    opacity: 0.8;
+  }
+}
+
+/* Bench bag animations */
+.bench-bag-svg {
+  transform-origin: bottom center;
+  animation: bagDropIn 0.5s var(--ease-spring) forwards;
+}
+
+@keyframes bagDropIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-45px) scale(0.8) rotate(-10deg);
+  }
+  70% {
+    transform: translateY(3px) scale(1.05) rotate(4deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+.street-prose {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.street-line {
+  font-family: var(--font-serif-prose);
+  font-size: 1.05rem;
+  color: var(--color-text-dark);
+  line-height: 1.65;
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s var(--ease-soft), transform 0.6s var(--ease-soft);
+}
+
+.street-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Wish Box */
+.wish-box-card {
+  background: #FAF3EC;
+  border: 1px dashed #DFC9BC;
+  border-radius: 16px;
+  padding: 18px 16px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.wish-prompt {
+  display: block;
+  font-family: var(--font-serif-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-rose-deep);
+  margin-bottom: 12px;
+}
+
+.wish-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.wish-chip {
+  background: #FFF;
+  border: 1px solid #DFC9BC;
+  color: #6E5462;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wish-chip:hover,
+.wish-chip.active {
+  background: var(--color-rose-deep);
+  color: #FFF;
+  border-color: var(--color-rose-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(122, 57, 81, 0.2);
+}
+
+.wish-input-wrapper {
+  margin-bottom: 14px;
+}
+
+.wish-input {
+  width: 100%;
+  background: #FFF;
+  border: 1px solid #DFC9BC;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-family: var(--font-serif-prose);
+  font-size: 0.98rem;
+  color: var(--color-text-dark);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.wish-input:focus {
+  border-color: var(--color-gold-mid);
+  box-shadow: 0 0 0 3px rgba(220, 162, 62, 0.2);
+}
+
+.wish-action-wrap {
+  text-align: right;
+}
+
+/* ==========================================================================
+   SCENE 3: The Question (Star of the site, Shy No Button)
+   ========================================================================== */
+.question-card {
+  text-align: center;
+  padding: 38px 24px 34px;
+}
+
+.question-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.question-sparkle {
+  color: var(--color-gold-mid);
+  font-size: 1.2rem;
+}
+
+.question-heading {
+  font-family: var(--font-serif-display);
+  font-size: 2.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-dark);
+}
+
+.highlight-date {
+  color: var(--color-rose-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold-mid);
+  text-underline-offset: 4px;
+}
+
+/* Buttons Arena */
+.buttons-arena {
+  width: 100%;
+  min-height: 180px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin: 10px 0 24px;
+  overflow: visible;
+}
+
+/* Big, warm, gently pulsing Yes button */
+.btn-yes {
+  position: relative;
+  background: var(--color-plum-btn);
+  color: #FFFDF9;
+  border: 2px solid var(--color-gold-mid);
+  font-family: var(--font-serif-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 16px 42px;
+  border-radius: 36px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(90, 34, 67, 0.35), 0 0 16px rgba(220, 162, 62, 0.3);
+  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
+  z-index: 5;
+  user-select: none;
+  animation: pulseYesGlow 3.5s infinite ease-in-out;
+}
+
+@keyframes pulseYesGlow {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(90, 34, 67, 0.35), 0 0 14px rgba(220, 162, 62, 0.25);
+  }
+  50% {
+    box-shadow: 0 10px 30px rgba(90, 34, 67, 0.45), 0 0 24px rgba(220, 162, 62, 0.55);
+  }
+}
+
+.btn-yes:hover {
+  transform: scale(1.05);
+}
+
+.btn-yes:active {
+  transform: scale(0.97);
+}
+
+/* Shy No Button Wrapper */
+.no-button-wrapper {
+  position: relative;
+  z-index: 10;
+  touch-action: none; /* crucial to prevent touch delays and intercept quickly */
+  transition: transform 0.4s var(--ease-spring);
+}
+
+/* Squash and stretch reaction */
+.no-button-wrapper.squash-stretch {
+  animation: noSquash 0.35s var(--ease-spring);
+}
+
+@keyframes noSquash {
+  0% { transform: scale(1, 1); }
+  35% { transform: scale(1.22, 0.78); }
+  70% { transform: scale(0.88, 1.15); }
+  100% { transform: scale(1, 1); }
+}
+
+.btn-no {
+  background: #F1E5E0;
+  color: #7A626E;
+  border: 1px solid #DFC6BE;
+  font-family: var(--font-serif-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  padding: 14px 34px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  user-select: none;
+  touch-action: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+/* Speech Tag beside No Button */
+.no-speech-tag {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: var(--color-rose-deep);
+  color: #FFF;
+  font-family: var(--font-serif-prose);
+  font-size: 0.85rem;
+  font-style: italic;
+  white-space: nowrap;
+  padding: 5px 12px;
+  border-radius: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s var(--ease-spring);
+  box-shadow: 0 4px 12px rgba(122, 57, 81, 0.35);
+  z-index: 12;
+}
+
+.no-speech-tag::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--color-rose-deep) transparent transparent transparent;
+}
+
+.no-speech-tag.visible {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* Tiny balloon for the 5th dodge */
+.no-balloon {
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 64px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.no-balloon.visible {
+  opacity: 1;
+}
+
+/* Flying away animation */
+.no-button-wrapper.floating-away {
+  animation: floatOffScreen 2.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+  pointer-events: none !important;
+}
+
+@keyframes floatOffScreen {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(15px, -80px) rotate(8deg);
+  }
+  60% {
+    transform: translate(-20px, -300px) rotate(-10deg);
+  }
+  100% {
+    transform: translate(25px, -110vh) rotate(14deg);
+    opacity: 0;
+  }
+}
+
+/* Secondary "Obviously yes" button */
+.btn-obviously-yes {
+  background: var(--color-rose-deep);
+  color: #FFF;
+  border: 2px solid var(--color-gold-mid);
+  font-family: var(--font-serif-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 32px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(122, 57, 81, 0.4);
+  animation: obviouslyPop 0.5s var(--ease-spring) forwards;
+  z-index: 6;
+}
+
+@keyframes obviouslyPop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Soft Escape Option */
+.soft-escape-wrapper {
+  margin-top: 12px;
+  transition: opacity 0.6s ease;
+}
+
+.btn-soft-escape {
+  background: none;
+  border: none;
+  color: var(--color-rose-mid);
+  font-family: var(--font-serif-prose);
+  font-style: italic;
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  padding: 6px 10px;
+  transition: color 0.2s;
+}
+
+.btn-soft-escape:hover {
+  color: var(--color-rose-deep);
+}
+
+.day-chips-panel {
+  margin-top: 14px;
+  padding: 14px;
+  background: #FAF3EC;
+  border-radius: 14px;
+  border: 1px solid #DFC9BC;
+}
+
+.day-chips-hint {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--color-text-subtle);
+  margin-bottom: 10px;
+}
+
+.day-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.day-chip {
+  background: #FFF;
+  border: 1px solid #D5B9AC;
+  color: var(--color-text-dark);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.day-chip:hover,
+.day-chip:focus-visible {
+  background: var(--color-rose-deep);
+  color: #FFF;
+  border-color: var(--color-rose-deep);
+  transform: translateY(-2px);
+}
+
+.day-chip-tell {
+  background: #F4E8DF;
+  border-color: var(--color-gold-mid);
+  color: var(--color-rose-deep);
+}
+
+/* ==========================================================================
+   SCENE 4: The Yes (Celebration)
+   ========================================================================== */
+.scene-celebration-card {
+  text-align: center;
+  padding: 38px 24px 30px;
+  position: relative;
+}
+
+.celebration-badge {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  animation: heartPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.celebration-title {
+  font-family: var(--font-serif-display);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--color-rose-deep);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.celebration-main-line {
+  font-family: var(--font-serif-display);
+  font-size: 1.55rem;
+  font-weight: 500;
+  color: var(--color-text-dark);
+  margin-bottom: 8px;
+}
+
+.celebration-sub-line {
+  font-family: var(--font-serif-prose);
+  font-size: 1.1rem;
+  color: var(--color-text-subtle);
+  margin-bottom: 22px;
+}
+
+.user-plan-recap {
+  background: #FAF3EC;
+  border: 1px dashed #DFC9BC;
+  border-radius: 14px;
+  padding: 12px 18px;
+  margin: 12px auto 24px;
+  max-width: 340px;
+  text-align: center;
+  font-family: var(--font-serif-prose);
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+.plan-label {
+  color: var(--color-rose-deep);
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.whatsapp-action-wrapper {
+  margin: 16px 0 28px;
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #25D366;
+  color: #FFF;
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 14px 34px;
+  border-radius: 32px;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+  transition: transform 0.25s var(--ease-spring), box-shadow 0.25s;
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.45);
+}
+
+.wa-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.wa-fallback-text {
+  font-family: var(--font-serif-prose);
+  font-style: italic;
+  color: var(--color-text-subtle);
+  font-size: 0.95rem;
+}
+
+.scroll-down-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-rose-mid);
+  font-family: var(--font-serif-prose);
+  font-style: italic;
+  font-size: 0.92rem;
+  margin-top: 10px;
+  opacity: 0.85;
+  animation: bobHint 2s infinite ease-in-out;
+}
+
+@keyframes bobHint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+.scroll-chevron {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   SCENE 5: The P.S. (Vanity Mirror & Fest Note)
+   ========================================================================== */
+.scene-vanity-wrapper {
+  padding: 24px 20px;
+  background: var(--color-cream-card);
+}
+
+.vanity-illustration {
+  width: 100%;
+  margin-bottom: 22px;
+}
+
+.vanity-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Dress sway animation */
+.swaying-dress-group {
+  transform-origin: 55px 35px;
+  animation: dressSway 4.5s ease-in-out infinite;
+}
+
+@keyframes dressSway {
+  0%, 100% { transform: rotate(0deg); }
+  33% { transform: rotate(2.5deg); }
+  66% { transform: rotate(-2deg); }
+}
+
+/* Vanity Bulb Glow transition */
+.vanity-bulb .bulb-glow {
+  transition: opacity 0.45s ease-out;
+}
+
+.vanity-bulb.lit .bulb-glow {
+  opacity: 0.95;
+}
+
+/* Bulb flicker effect */
+.vanity-bulb.flicker .bulb-glow {
+  animation: bulbFlicker 0.4s ease-in-out;
+}
+
+@keyframes bulbFlicker {
+  0% { opacity: 0; }
+  30% { opacity: 0.7; }
+  50% { opacity: 0.2; }
+  75% { opacity: 0.9; }
+  100% { opacity: 0.95; }
+}
+
+/* Mirror light sweep */
+.mirror-light-sweep {
+  animation: mirrorSweep 5s ease-in-out infinite;
+}
+
+@keyframes mirrorSweep {
+  0%, 70%, 100% { transform: translateX(0); opacity: 0.15; }
+  85% { transform: translateX(60px); opacity: 0.35; }
+}
+
+/* Lipstick star drawn on mirror */
+.lipstick-star-drawn {
+  transition: opacity 0.8s ease-out, transform 0.8s var(--ease-spring);
+}
+
+.lipstick-star-drawn.revealed {
+  opacity: 1 !important;
+  transform: scale(1.1);
+}
+
+/* Handwritten Paper Note Component */
+.handwritten-paper-note {
+  position: relative;
+  background: #FFFDF8;
+  border-radius: 8px;
+  padding: 28px 22px 24px;
+  box-shadow: 0 10px 25px rgba(35, 20, 30, 0.18), 0 2px 6px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(220, 162, 62, 0.2);
+  margin-top: 14px;
+  transform: rotate(-0.75deg);
+}
+
+.paper-pin {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle at 35% 35%, #FCE198, #C99842);
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.note-header {
+  margin-bottom: 14px;
+}
+
+.note-title {
+  font-family: var(--font-script);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--color-rose-deep);
+  line-height: 1;
+}
+
+.note-body {
+  font-family: var(--font-script);
+  font-size: 1.45rem;
+  line-height: 1.5;
+  color: #382431;
+}
+
+.ps-line,
+.pps-line {
+  margin-bottom: 14px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.7s var(--ease-soft), transform 0.7s var(--ease-soft);
+}
+
+.ps-line.visible,
+.pps-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   SCENE 6: The P.P.S. & Closing
+   ========================================================================== */
+.scene-camera-wrapper {
+  padding: 24px 20px 36px;
+  background: var(--color-cream-card);
+}
+
+.camera-stage {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.instant-camera {
+  position: relative;
+  width: 160px;
+}
+
+.camera-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 16px rgba(25, 15, 25, 0.2));
+}
+
+/* Polaroid card sliding down */
+.polaroid-card {
+  position: absolute;
+  top: 95px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  width: 95px;
+  height: 114px;
+  background: #FFFDF8;
+  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  padding: 8px 8px 24px;
+  z-index: -1;
+  opacity: 0;
+  transition: transform 1.2s var(--ease-spring), opacity 0.4s;
+}
+
+.polaroid-card.ejected {
+  opacity: 1;
+  transform: translateX(-50%) translateY(40px);
+}
+
+.polaroid-frame {
+  width: 100%;
+  height: 100%;
+  background: #231C24;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.polaroid-photo {
+  width: 100%;
+  height: 100%;
+  background: #26202A;
+  transition: background 2.8s ease-in-out;
+}
+
+/* The photo develops into a warm watercolor/pastel glow */
+.polaroid-card.developed .polaroid-photo {
+  background: radial-gradient(circle at 50% 40%, #FFE2C7 0%, #F59DB1 45%, #9E5579 80%, #5E3250 100%);
+}
+
+.pps-note {
+  transform: rotate(0.85deg);
+  margin-bottom: 28px;
+}
+
+.pps-action-wrapper {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.btn-send-photo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-rose-deep);
+  color: #FFF;
+  font-family: var(--font-ui);
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 28px;
+  box-shadow: 0 6px 18px rgba(122, 57, 81, 0.35);
+  transition: transform 0.25s var(--ease-spring), background 0.25s;
+}
+
+.btn-send-photo:hover {
+  transform: translateY(-2px);
+  background: #8F425F;
+}
+
+.photo-cam-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Final Closing & Signature */
+.closing-section {
+  text-align: center;
+  padding: 24px 10px 10px;
+  position: relative;
+}
+
+.signature-line {
+  font-family: var(--font-script);
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--color-rose-deep);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.signature-closing-line {
+  font-family: var(--font-serif-prose);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--color-text-subtle);
+  line-height: 1.5;
+}
+
+.closing-ambient-lanterns {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.ambient-glow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-gold-mid);
+  box-shadow: 0 0 12px var(--color-gold-glow);
+  animation: glowFloat 3s infinite ease-in-out;
+}
+.ambient-glow-dot.dot-2 { animation-delay: 0.8s; }
+.ambient-glow-dot.dot-3 { animation-delay: 1.6s; }
+
+@keyframes glowFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ==========================================================================
+   Reduced Motion Accessibility (@media prefers-reduced-motion)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .envelope-container {
+    animation: none !important;
+  }
+
+  .ambient-canvas {
+    display: none !important;
+  }
+
+  .camera-flash {
+    display: none !important;
+  }
+
+  /* No button stays put, visibly out of order */
+  .no-button-wrapper {
+    position: static !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .btn-no {
+    opacity: 0.6 !important;
+    cursor: default !important;
+    border-style: dashed !important;
+  }
+
+  .cal-page.flipped {
+    display: none !important;
+  }
+
+  .gold-ring-path {
+    stroke-dashoffset: 0 !important;
+  }
+}
+
+/* ==========================================================================
+   Mobile-First Refinements (<= 390px Viewports)
+   ========================================================================== */
+@media (max-width: 390px) {
+  .app-stage {
+    padding: 16px 12px calc(36px + env(safe-area-inset-bottom));
+  }
+
+  .scene-content {
+    padding: 24px 18px;
+  }
+
+  .knock-title {
+    font-size: 2.1rem;
+  }
+
+  .question-heading {
+    font-size: 1.85rem;
+  }
+
+  .celebration-title {
+    font-size: 2.4rem;
+  }
+
+  .note-body {
+    font-size: 1.35rem;
+  }
+
+  .buttons-arena {
+    gap: 14px;
+  }
+
+  .btn-yes {
+    padding: 14px 28px;
+    font-size: 1.4rem;
+  }
+
+  .btn-no {
+    padding: 12px 22px;
+    font-size: 1.2rem;
+  }
+}

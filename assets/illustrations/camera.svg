@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 140">
+  <defs>
+    <linearGradient id="camBodyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FDFBF7"/>
+      <stop offset="100%" stop-color="#EADBCE"/>
+    </linearGradient>
+    <radialGradient id="camLensGrad" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#4F4457"/>
+      <stop offset="60%" stop-color="#2A2230"/>
+      <stop offset="100%" stop-color="#140E1A"/>
+    </radialGradient>
+  </defs>
+  <rect x="15" y="25" width="130" height="105" rx="16" fill="url(#camBodyGrad)" stroke="#D8C7B8" stroke-width="2"/>
+  <rect x="15" y="55" width="130" height="8" fill="#C87479"/>
+  <rect x="15" y="63" width="130" height="5" fill="#E6AF5C"/>
+  <rect x="28" y="34" width="18" height="13" rx="3" fill="#3D3242" stroke="#FAF1E8" stroke-width="1.5"/>
+  <rect x="110" y="34" width="22" height="15" rx="3" fill="#FFFCEB" stroke="#DCA23E" stroke-width="1.5"/>
+  <circle cx="121" cy="41" r="4" fill="#FFE28C"/>
+  <rect x="32" y="19" width="14" height="6" rx="2" fill="#A44E57"/>
+  <circle cx="80" cy="85" r="32" fill="#E5D6C8" stroke="#D1BEAD" stroke-width="2"/>
+  <circle cx="80" cy="85" r="26" fill="url(#camLensGrad)"/>
+  <circle cx="80" cy="85" r="18" fill="#1B1421"/>
+  <ellipse cx="73" cy="78" rx="6" ry="3" fill="#FFF" opacity="0.45" transform="rotate(-30 73 78)"/>
+  <rect x="35" y="127" width="90" height="4" rx="2" fill="#33242B"/>
+</svg>

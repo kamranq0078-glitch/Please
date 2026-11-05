@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="sealGold" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#FCE198"/>
+      <stop offset="45%" stop-color="#E2A645"/>
+      <stop offset="85%" stop-color="#A56E1F"/>
+      <stop offset="100%" stop-color="#6E450E"/>
+    </radialGradient>
+    <filter id="sealShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#3d1d05" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <circle cx="50" cy="50" r="44" fill="url(#sealGold)" filter="url(#sealShadow)"/>
+  <circle cx="50" cy="50" r="37" fill="none" stroke="#FCE198" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.8"/>
+  <path d="M50 25 C45 35 32 40 32 52 C32 62 40 70 50 70 C60 70 68 62 68 52 C68 40 55 35 50 25 Z" fill="#996316" opacity="0.35"/>
+  <path d="M50 32 C47 40 38 44 38 52 C38 59 43 64 50 64 C57 64 62 59 62 52 C62 44 53 40 50 32 Z" fill="#FCE198" opacity="0.5"/>
+  <circle cx="50" cy="49" r="6" fill="#FCE198" opacity="0.9"/>
+</svg>

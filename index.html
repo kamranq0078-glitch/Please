@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Saturday?</title>
+
+  <!-- Typography: Warm serifs for heartfelt prose, handwritten script for personal notes, clean sans for UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <!-- Ambient Particle Canvas for petals, rising lanterns, and celebration confetti -->
+  <canvas id="ambient-canvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Flash overlay for camera in Scene 6 -->
+  <div id="camera-flash" class="camera-flash" aria-hidden="true"></div>
+
+  <!-- Screen reader live announcement region for accessibility -->
+  <div id="sr-announcements" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Main Stage Container -->
+  <main class="app-stage" id="app-stage">
+
+    <!-- ==========================================
+         SCENE 0: Knock knock.
+         ========================================== -->
+    <section class="scene scene-0 active" id="scene-0" aria-label="An invitation for Ainain">
+      <div class="scene-content scene-envelope-wrapper">
+        <div class="envelope-container" id="envelope-container" role="button" tabindex="0" aria-label="Open the envelope from Kamran">
+          <!-- The Envelope Illustration -->
+          <div class="envelope" id="envelope">
+            <div class="envelope-back"></div>
+            <!-- Letter Card Peek -->
+            <div class="envelope-card-peek" id="envelope-card-peek">
+              <div class="peek-line"></div>
+              <div class="peek-line short"></div>
+            </div>
+            <div class="envelope-pocket"></div>
+            <div class="envelope-flap" id="envelope-flap">
+              <!-- Golden Wax Seal -->
+              <div class="wax-seal" id="wax-seal" title="Tap to open">
+                <svg viewBox="0 0 100 100" class="wax-seal-svg" aria-hidden="true">
+                  <defs>
+                    <radialGradient id="sealGold" cx="40%" cy="35%" r="65%">
+                      <stop offset="0%" stop-color="#FCE198"/>
+                      <stop offset="45%" stop-color="#E2A645"/>
+                      <stop offset="85%" stop-color="#A56E1F"/>
+                      <stop offset="100%" stop-color="#6E450E"/>
+                    </radialGradient>
+                    <filter id="sealShadow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#3d1d05" flood-opacity="0.4"/>
+                    </filter>
+                  </defs>
+                  <circle cx="50" cy="50" r="44" fill="url(#sealGold)" filter="url(#sealShadow)"/>
+                  <circle cx="50" cy="50" r="37" fill="none" stroke="#FCE198" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.8"/>
+                  <!-- Monogram / Botanical detail -->
+                  <path d="M50 25 C45 35 32 40 32 52 C32 62 40 70 50 70 C60 70 68 62 68 52 C68 40 55 35 50 25 Z" fill="#996316" opacity="0.35"/>
+                  <path d="M50 32 C47 40 38 44 38 52 C38 59 43 64 50 64 C57 64 62 59 62 52 C62 44 53 40 50 32 Z" fill="#FCE198" opacity="0.5"/>
+                  <circle cx="50" cy="49" r="6" fill="#FCE198" opacity="0.9"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <!-- Little shelf the envelope lands on -->
+          <div class="envelope-shelf"></div>
+        </div>
+
+        <div class="scene-0-text" id="scene-0-text">
+          <h1 class="knock-title">Knock knock.</h1>
+          <p class="knock-subtitle">Open this when you’ve got a minute. It’s from me.</p>
+          <div class="tap-hint" aria-hidden="true">
+            <span class="tap-hint-text">Tap the seal to open</span>
+            <span class="tap-hint-dot"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCENE 1: You're right.
+         ========================================== -->
+    <section class="scene scene-1" id="scene-1" aria-label="You're right">
+      <div class="scene-content scene-letter-card">
+        <!-- Wall Calendar Background Illustration -->
+        <div class="calendar-wrapper" aria-hidden="true">
+          <svg class="calendar-svg" viewBox="0 0 320 220" id="calendar-svg">
+            <defs>
+              <filter id="calShadow" x="-10%" y="-10%" width="120%" height="120%">
+                <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#120e24" flood-opacity="0.18"/>
+              </filter>
+            </defs>
+            <!-- Calendar Backplate -->
+            <rect x="25" y="15" width="270" height="190" rx="14" fill="#F8F3EB" filter="url(#calShadow)"/>
+            <!-- Calendar Top Bar (Warm Plum / Rose) -->
+            <path d="M25 29 C25 21.2 31.2 15 39 15 L281 15 C288.8 15 295 21.2 295 29 L295 55 L25 55 Z" fill="#7A3951"/>
+            <!-- Binder Rings -->
+            <circle cx="75" cy="22" r="5" fill="#E6AF5C"/>
+            <circle cx="160" cy="22" r="5" fill="#E6AF5C"/>
+            <circle cx="245" cy="22" r="5" fill="#E6AF5C"/>
+            <!-- Month Header -->
+            <text x="160" y="42" fill="#FAF1E8" font-family="'Lora', serif" font-size="16" font-weight="600" text-anchor="middle" letter-spacing="3">THIS WEEKEND</text>
+
+            <!-- Flipping Pages Effect -->
+            <g id="calendar-flipping-pages">
+              <!-- Page 1 (Thursday) -->
+              <g class="cal-page page-flip-1" id="cal-page-1">
+                <rect x="25" y="55" width="270" height="150" fill="#FAF3E7" rx="0 0 14 14"/>
+                <text x="160" y="105" fill="#A89E92" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" text-anchor="middle" font-weight="500">THU</text>
+                <text x="160" y="155" fill="#756B60" font-family="'Cormorant Garamond', serif" font-size="44" text-anchor="middle" font-weight="700">Past</text>
+              </g>
+              <!-- Page 2 (Friday - Fest Day!) -->
+              <g class="cal-page page-flip-2" id="cal-page-2">
+                <rect x="25" y="55" width="270" height="150" fill="#FCF6ED" rx="0 0 14 14"/>
+                <text x="160" y="105" fill="#BA7988" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" text-anchor="middle" font-weight="600">FRIDAY</text>
+                <text x="160" y="145" fill="#7A3951" font-family="'Caveat', cursive" font-size="28" text-anchor="middle">Your Fest Day ✨</text>
+              </g>
+              <!-- Page 3 (Settled Page: Saturday) -->
+              <g class="cal-page cal-page-settled" id="cal-page-settled">
+                <rect x="25" y="55" width="270" height="150" fill="#FFFDF8" rx="0 0 14 14"/>
+                <text x="160" y="95" fill="#8C5061" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" text-anchor="middle" letter-spacing="2" font-weight="600">OUR DAY</text>
+                <text x="160" y="145" id="calendar-day-text" fill="#2E2333" font-family="'Cormorant Garamond', serif" font-size="38" text-anchor="middle" font-weight="700">Saturday</text>
+                
+                <!-- Hand-drawn Gold Circle Ring that draws itself -->
+                <path id="gold-circle-ring" class="gold-ring-path" d="M110 135 C102 110, 155 105, 205 118 C235 125, 230 158, 195 165 C145 174, 98 160, 108 132 C113 118, 140 112, 175 115" fill="none" stroke="#DCA23E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <!-- The sincere text -->
+        <div class="letter-body-prose" id="scene-1-prose">
+          <p class="prose-line line-1" id="s1-line-1">You’re right.</p>
+          <p class="prose-line line-2" id="s1-line-2">I don’t ask enough.</p>
+          <p class="prose-line line-3" id="s1-line-3">I think about you all the time, and somewhere along the way I started assuming you knew, instead of asking you out the way you deserve to be asked.</p>
+          <p class="prose-line line-4" id="s1-line-4">So I’m fixing that. Properly. Starting now.</p>
+        </div>
+
+        <div class="scene-action-wrap" id="s1-action-wrap">
+          <button type="button" class="btn-gentle-next" id="s1-next-btn">
+            <span>Read on</span>
+            <svg viewBox="0 0 20 20" class="btn-arrow-icon" aria-hidden="true">
+              <path d="M12 4l6 6m0 0l-6 6m6-6H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCENE 2: Wherever you wish.
+         ========================================== -->
+    <section class="scene scene-2" id="scene-2" aria-label="Wherever you wish">
+      <div class="scene-content scene-street-wrapper">
+        <!-- Bags Counter Top Pill -->
+        <div class="bags-counter-pill" id="bags-counter-pill" aria-live="polite">
+          <span class="counter-label">Bags I’m holding:</span>
+          <span class="counter-value" id="bags-counter-val">0</span>
+        </div>
+
+        <!-- Street and Bench Illustration -->
+        <div class="street-illustration-container" aria-hidden="true">
+          <svg class="street-svg" viewBox="0 0 380 200" id="street-svg">
+            <defs>
+              <!-- Warm background street gradient -->
+              <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#EAD6CD"/>
+                <stop offset="60%" stop-color="#FCEEE6"/>
+                <stop offset="100%" stop-color="#F6E3DB"/>
+              </linearGradient>
+              <linearGradient id="warmGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FFE4A0" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#FFE4A0" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Sky / Street Backdrop -->
+            <rect x="0" y="0" width="380" height="200" fill="url(#skyGrad)" rx="12"/>
+
+            <!-- Distant Shop Facades -->
+            <path d="M15 150 L15 70 L95 55 L175 70 L175 150 Z" fill="#DEC2B6" opacity="0.6"/>
+            <path d="M185 150 L185 65 L275 65 L365 78 L365 150 Z" fill="#D5B6A8" opacity="0.5"/>
+
+            <!-- Shop Front Left (Boutique) -->
+            <rect x="25" y="85" width="130" height="65" fill="#D29E9A" rx="4"/>
+            <!-- Striped Awning Left -->
+            <path d="M20 85 L160 85 L150 72 L30 72 Z" fill="#7A3951"/>
+            <path d="M40 85 L60 85 L55 72 L42 72 Z" fill="#FAF1E8"/>
+            <path d="M80 85 L100 85 L95 72 L82 72 Z" fill="#FAF1E8"/>
+            <path d="M120 85 L140 85 L135 72 L122 72 Z" fill="#FAF1E8"/>
+            <!-- Boutique warm window -->
+            <rect x="40" y="98" width="50" height="42" fill="#FFF3D6" rx="3" opacity="0.85"/>
+            <line x1="65" y1="98" x2="65" y2="140" stroke="#C28784" stroke-width="1.5"/>
+            <line x1="40" y1="119" x2="90" y2="119" stroke="#C28784" stroke-width="1.5"/>
+
+            <!-- Tea Stall Right -->
+            <rect x="210" y="92" width="135" height="58" fill="#C99884" rx="4"/>
+            <!-- Stall Roof -->
+            <path d="M200 92 L350 92 L340 80 L210 80 Z" fill="#4B334C"/>
+            <!-- Tea Kettle on Stall -->
+            <rect x="285" y="98" width="22" height="16" fill="#885E48" rx="2"/>
+            <path d="M281 106 L285 106" stroke="#885E48" stroke-width="2"/>
+            <path d="M296 98 L296 93" stroke="#885E48" stroke-width="2"/>
+            <!-- Animated Tea Steam Wisp -->
+            <path id="tea-steam-wisp" class="steam-wisp-animated" d="M296 90 Q292 82 297 76 Q302 70 295 62" fill="none" stroke="#FFF" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+
+            <!-- Overhead Lantern String -->
+            <path d="M10 32 Q95 52 190 38 Q285 52 370 34" fill="none" stroke="#7A5666" stroke-width="1.5"/>
+            <!-- Lantern 1 -->
+            <circle cx="85" cy="46" r="14" fill="url(#warmGlow)"/>
+            <rect x="80" y="40" width="10" height="14" fill="#E6AF5C" rx="4"/>
+            <!-- Lantern 2 -->
+            <circle cx="190" cy="40" r="14" fill="url(#warmGlow)"/>
+            <rect x="185" y="34" width="10" height="14" fill="#E6AF5C" rx="4"/>
+            <!-- Lantern 3 -->
+            <circle cx="295" cy="45" r="14" fill="url(#warmGlow)"/>
+            <rect x="290" y="39" width="10" height="14" fill="#E6AF5C" rx="4"/>
+
+            <!-- Pavement / Cobblestones -->
+            <rect x="0" y="148" width="380" height="52" fill="#E4D3C9"/>
+            <line x1="0" y1="149" x2="380" y2="149" stroke="#CFBBB0" stroke-width="2"/>
+
+            <!-- The Foreground Street Bench -->
+            <g id="street-bench">
+              <!-- Bench Backrest Slat 1 & 2 -->
+              <rect x="80" y="132" width="220" height="7" fill="#694638" rx="2"/>
+              <rect x="80" y="142" width="220" height="7" fill="#694638" rx="2"/>
+              <!-- Bench Seat Surface -->
+              <rect x="75" y="152" width="230" height="8" fill="#805645" rx="3"/>
+              <!-- Bench Legs & Armrests (Ironwork) -->
+              <path d="M85 130 L85 178 M95 152 L90 178" stroke="#3D2922" stroke-width="4" stroke-linecap="round"/>
+              <path d="M295 130 L295 178 M285 152 L290 178" stroke="#3D2922" stroke-width="4" stroke-linecap="round"/>
+              <path d="M190 152 L190 178" stroke="#3D2922" stroke-width="3" stroke-linecap="round"/>
+            </g>
+
+            <!-- Dynamic Bag Container where bags drop onto bench -->
+            <g id="bench-bags-layer"></g>
+          </svg>
+        </div>
+
+        <!-- Scene 2 Lines -->
+        <div class="street-prose" id="scene-2-prose">
+          <p class="street-line" id="s2-line-1">Here’s the plan: there isn’t one. You choose.</p>
+          <p class="street-line" id="s2-line-2">Shopping for your sisters? I’ll carry every single bag. Even the ones you say are light.</p>
+          <p class="street-line" id="s2-line-3">Wandering the streets with no destination? I’ll follow you anywhere.</p>
+          <p class="street-line" id="s2-line-4">Chai, a long walk, a bench, doing absolutely nothing? I’m in.</p>
+          <p class="street-line" id="s2-line-5">Wherever you want to go, I want to be right next to you.</p>
+        </div>
+
+        <!-- Her Wish Box -->
+        <div class="wish-box-card" id="wish-box-card">
+          <label for="user-wish-input" class="wish-prompt">Tell me where. Anywhere.</label>
+
+          <!-- Tappable Chips -->
+          <div class="wish-chips-row" id="wish-chips-row" role="group" aria-label="Quick plan suggestions">
+            <button type="button" class="wish-chip" data-wish="Shop for the sisters">Shop for the sisters</button>
+            <button type="button" class="wish-chip" data-wish="Wander the streets">Wander the streets</button>
+            <button type="button" class="wish-chip" data-wish="Chai and snacks">Chai and snacks</button>
+            <button type="button" class="wish-chip" data-wish="Surprise me">Surprise me</button>
+            <button type="button" class="wish-chip" data-wish="Anything">Anything</button>
+          </div>
+
+          <!-- Free-text input -->
+          <div class="wish-input-wrapper">
+            <input type="text" id="user-wish-input" class="wish-input" placeholder="Anywhere you like…" maxlength="120" autocomplete="off">
+          </div>
+
+          <div class="wish-action-wrap">
+            <button type="button" class="btn-ask-question" id="btn-to-question">
+              <span>Ask me</span>
+              <svg viewBox="0 0 20 20" class="btn-arrow-icon" aria-hidden="true">
+                <path d="M12 4l6 6m0 0l-6 6m6-6H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCENE 3: The question. (The star of the site)
+         ========================================== -->
+    <section class="scene scene-3" id="scene-3" aria-label="The Question">
+      <div class="scene-content question-card" id="question-card">
+        <div class="question-header">
+          <span class="question-sparkle">✦</span>
+          <h2 class="question-heading" id="main-question-text">
+            Ainain, will you go on a date with me this <span class="highlight-date" id="q-date-word">Saturday</span>?
+          </h2>
+          <span class="question-sparkle">✦</span>
+        </div>
+
+        <!-- Buttons Arena: safe container where No can dodge around without overlapping Yes -->
+        <div class="buttons-arena" id="buttons-arena">
+          <!-- Big, warm, gently pulsing Yes Button -->
+          <button type="button" class="btn-yes" id="btn-yes">
+            <span class="btn-yes-glow" aria-hidden="true"></span>
+            <span class="btn-yes-text" id="btn-yes-label">Yes</span>
+          </button>
+
+          <!-- The Shy No Button Wrapper (Absolute positioned relative to arena) -->
+          <div class="no-button-wrapper" id="no-button-wrapper">
+            <!-- Balloon element that lifts No button away on 5th dodge -->
+            <div class="no-balloon" id="no-balloon" aria-hidden="true">
+              <svg viewBox="0 0 50 80" class="balloon-svg">
+                <defs>
+                  <radialGradient id="balloonGrad" cx="35%" cy="30%" r="65%">
+                    <stop offset="0%" stop-color="#FFD6DF"/>
+                    <stop offset="40%" stop-color="#E58B9C"/>
+                    <stop offset="100%" stop-color="#9E354A"/>
+                  </radialGradient>
+                </defs>
+                <ellipse cx="25" cy="32" rx="22" ry="26" fill="url(#balloonGrad)"/>
+                <!-- Highlight -->
+                <ellipse cx="18" cy="22" rx="6" ry="10" fill="#FFF" opacity="0.45" transform="rotate(-20 18 22)"/>
+                <!-- Knot -->
+                <polygon points="22,57 28,57 25,62" fill="#9E354A"/>
+                <!-- String -->
+                <path d="M25 62 Q23 68 26 73 Q24 77 25 80" fill="none" stroke="#BA7988" stroke-width="1.5"/>
+              </svg>
+            </div>
+
+            <!-- Speech tag with the reactions -->
+            <div class="no-speech-tag" id="no-speech-tag" role="status" aria-live="polite">
+              <span id="no-speech-text"></span>
+            </div>
+
+            <button type="button" class="btn-no" id="btn-no" aria-label="No">
+              <span id="btn-no-text">No</span>
+            </button>
+          </div>
+
+          <!-- Secondary "Obviously yes" button that appears in place of No once it flies away -->
+          <button type="button" class="btn-obviously-yes" id="btn-obviously-yes" aria-hidden="true" style="display: none;">
+            <span>Obviously yes.</span>
+          </button>
+        </div>
+
+        <!-- Soft Escape Line: appears after 3 dodges -->
+        <div class="soft-escape-wrapper" id="soft-escape-wrapper" style="opacity: 0; pointer-events: none;">
+          <button type="button" class="btn-soft-escape" id="btn-soft-escape">
+            <span id="escape-line-text">Saturday doesn’t work? Pick another day</span>
+          </button>
+
+          <!-- Day Chips Row (Sat, Sun, Mon, Tue, Wed, Thu, Fri, "You tell me") -->
+          <div class="day-chips-panel" id="day-chips-panel" style="display: none;">
+            <p class="day-chips-hint">Any day is the right day:</p>
+            <div class="day-chips-grid">
+              <button type="button" class="day-chip" data-day="Saturday">Sat</button>
+              <button type="button" class="day-chip" data-day="Sunday">Sun</button>
+              <button type="button" class="day-chip" data-day="Monday">Mon</button>
+              <button type="button" class="day-chip" data-day="Tuesday">Tue</button>
+              <button type="button" class="day-chip" data-day="Wednesday">Wed</button>
+              <button type="button" class="day-chip" data-day="Thursday">Thu</button>
+              <button type="button" class="day-chip" data-day="Friday">Fri</button>
+              <button type="button" class="day-chip day-chip-tell" data-day="You tell me">You tell me</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCENE 4: The Yes. (Celebration & WhatsApp)
+         ========================================== -->
+    <section class="scene scene-4" id="scene-4" aria-label="It's a date">
+      <div class="scene-content scene-celebration-card">
+        <div class="celebration-badge" aria-hidden="true">💛</div>
+
+        <h2 class="celebration-title">It’s a date.</h2>
+
+        <div class="celebration-body">
+          <p class="celebration-main-line">
+            <strong id="celebration-date-word">Saturday</strong>. You, me, and every bag in the city.
+          </p>
+          <p class="celebration-sub-line">
+            Wherever you wish, I’ll be next to you.
+          </p>
+
+          <!-- Display her chosen plan/wish if she wrote one -->
+          <div class="user-plan-recap" id="user-plan-recap" style="display: none;">
+            <span class="plan-label">Your plan:</span>
+            <span class="plan-content" id="plan-content-text"></span>
+          </div>
+        </div>
+
+        <!-- Tell Kamran Action -->
+        <div class="whatsapp-action-wrapper" id="whatsapp-action-wrapper">
+          <a href="#" id="tell-kamran-btn" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" class="wa-icon" aria-hidden="true">
+              <path fill="currentColor" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.13 8.13 0 0 1-1.25-4.36c0-4.5 3.66-8.16 8.16-8.16 2.18 0 4.23.85 5.77 2.39a8.1 8.1 0 0 1 2.4 5.77c-.01 4.5-3.67 8.16-8.17 8.16zm4.47-6.1c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.77 2.71 4.3 3.79.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.12-.23-.19-.48-.31z"/>
+            </svg>
+            <span>Tell Kamran</span>
+          </a>
+          <p class="wa-fallback-text" id="wa-fallback-text" style="display: none;">
+            Screenshot this and send it to Kamran.
+          </p>
+        </div>
+
+        <!-- Scroll down indicator to see the sweet P.S. -->
+        <div class="scroll-down-hint" id="scroll-down-hint">
+          <span class="scroll-hint-label">There’s something else…</span>
+          <svg viewBox="0 0 24 24" class="scroll-chevron" aria-hidden="true">
+            <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCENE 5: The P.S. (Vanity Mirror & Fest Note)
+         ========================================== -->
+    <section class="scene scene-5" id="scene-5" aria-label="P.S. Note">
+      <div class="scene-content scene-vanity-wrapper">
+
+        <!-- Illustrated Vanity Mirror Area -->
+        <div class="vanity-illustration" aria-hidden="true">
+          <svg class="vanity-svg" viewBox="0 0 340 260" id="vanity-svg">
+            <defs>
+              <!-- Mirror Surface Reflection Gradient -->
+              <linearGradient id="mirrorShimmer" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#F2DFD8" stop-opacity="0.8"/>
+                <stop offset="35%" stop-color="#FFF5F0" stop-opacity="0.95"/>
+                <stop offset="70%" stop-color="#EED5CD" stop-opacity="0.7"/>
+                <stop offset="100%" stop-color="#F9EAE3" stop-opacity="0.85"/>
+              </linearGradient>
+              <!-- Bulb Glow Gradient -->
+              <radialGradient id="bulbGlowGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FFF9DE"/>
+                <stop offset="40%" stop-color="#FFDD78" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#FFAE34" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="mirrorShadow" x="-10%" y="-10%" width="120%" height="120%">
+                <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#2D1C27" flood-opacity="0.25"/>
+              </filter>
+            </defs>
+
+            <!-- Swaying Dress on Hanger (Left side of vanity) -->
+            <g id="swaying-dress" class="swaying-dress-group">
+              <!-- Hanger Hook & Triangle -->
+              <path d="M45 42 Q50 32 55 35 Q60 40 55 46 L30 62 L80 62 Z" fill="none" stroke="#DCA23E" stroke-width="2" stroke-linecap="round"/>
+              <!-- Gorgeous Festive Dress -->
+              <path d="M38 62 Q55 66 72 62 L88 175 Q55 186 22 175 Z" fill="#994D66" opacity="0.9"/>
+              <!-- Dress Shimmer Accents -->
+              <path d="M45 75 Q55 100 40 160" stroke="#FCE198" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.6"/>
+              <path d="M65 75 Q72 110 70 162" stroke="#FCE198" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.6"/>
+            </g>
+
+            <!-- Vanity Table Shelf -->
+            <rect x="70" y="215" width="250" height="12" fill="#5E3847" rx="3"/>
+            <rect x="80" y="227" width="230" height="6" fill="#442633" rx="2"/>
+
+            <!-- Vanity Mirror Frame & Glass -->
+            <g id="mirror-frame" filter="url(#mirrorShadow)">
+              <!-- Outer Golden Frame Ring -->
+              <circle cx="215" cy="118" r="92" fill="#FAF1E8" stroke="#DCA23E" stroke-width="4"/>
+              <!-- Mirror Glass -->
+              <circle cx="215" cy="118" r="82" fill="url(#mirrorShimmer)"/>
+              
+              <!-- Subtle Mirror Glass Light Sweep -->
+              <path id="mirror-light-sweep" class="mirror-light-sweep" d="M165 45 L215 45 L175 190 L125 190 Z" fill="#FFF" opacity="0.2"/>
+
+              <!-- Lipstick Star Drawn on Mirror Glass -->
+              <g id="lipstick-star" class="lipstick-star-drawn" style="opacity: 0;">
+                <path d="M225 80 L228 92 L240 95 L228 98 L225 110 L222 98 L210 95 L222 92 Z" fill="#D85C77"/>
+                <circle cx="225" cy="95" r="2" fill="#FFF"/>
+              </g>
+            </g>
+
+            <!-- 10 Warm Vanity Bulbs around the Frame -->
+            <g id="vanity-bulbs">
+              <!-- Bulb 1 (top center) -->
+              <g class="vanity-bulb" id="v-bulb-1" data-cx="215" data-cy="26">
+                <circle cx="215" cy="26" r="14" class="bulb-glow" fill="url(#bulbGlowGrad)" opacity="0"/>
+                <circle cx="215" cy="26" r="6" class="bulb-glass" fill="#FFF7DE" stroke="#C99842" stroke-width="1"/>
+              </g>
+              <!-- Bulb 2 -->
+              <g class="vanity-bulb" id="v-bulb-2" data-cx="269" data-cy="44">
+                <circle cx="269" cy="44" r="14" class="bulb-glow" fill="url(#bulbGlowGrad)" opacity="0"/>
+                <circle cx="269" cy="44" r="6" class="bulb-glass" fill="#FFF7DE" stroke="#C99842" stroke-width="1"/>
+              </g>
+              <!-- Bulb 3 -->
+              <g class="vanity-bulb" id="v-bulb-3" data-cx="302" data-cy="90">
+                <circle cx="302" cy="90" r="14" class="bulb-glow" fill="url(#bulbGlowGrad)" opacity="0"/>
+                <circle cx="302" cy="90" r="6" class="bulb-glass" fill="#FFF7DE" stroke="#C99842" stroke-width="1"/>
+              </g>
+              <!-- Bulb 4 -->
+              <g class="vanity-bulb" id="v-bulb-4" data-cx="302" data-cy="146">
+                <circle cx="302" cy="146" r="14" class="bulb-glow" fill="url(#bulbGlowGrad)" opacity="0"/>
+                <circle cx="302" cy="146" r="6" class="bulb-glass" fill="#FFF7DE" stroke="#C99842" stroke-width="1"/>
+              </g>
+              <!-- Bulb 5 -->
+              <g class="vanity-bulb" id="v-bulb-5" data-cx="269" data-cy="192">
+                <circle cx="269" cy="192" r="14" class="bulb-glow" fill="url(#bulbGlowGrad)" opacity="0"/>
+                <circle cx="269" cy="192" r="6" class="bulb-glass" fill="#FFF7DE" stroke="#C99842" stroke-width="1"/>
+              </g>
+              <!-- Bulb 6 (bottom) -->
+              <g class="vanity-bulb" id="v-bulb-6" data-cx="215" data-cy="210">
+                <circle cx="215" cy="210" r="14" class="bulb-glow" fill="url(#bulbGlowGrad)" opacity="0"/>
+                <circle cx="215" cy="210" r="6" class="bulb-glass" fill="#FFF7DE" stroke="#C99842" stroke-width="1"/>
+              </g>
+              <!-- Bulb 7 -->
+              <g class="vanity-bulb" id="v-bulb-7" data-cx="161" data-cy="192">
+                <circle cx="161" cy="192" r="14" class="bulb-glow" fill="url(#bulbGlowGrad)" opacity="0"/>
+                <circle cx="161" cy="192" r="6" class="bulb-glass" fill="#FFF7DE" stroke="#C99842" stroke-width="1"/>
+              </g>
+              <!-- Bulb 8 -->
+              <g class="vanity-bulb" id="v-bulb-8" data-cx="128" data-cy="146">
+                <circle cx="128" cy="146" r="14" class="bulb-glow" fill="url(#bulbGlowGrad)" opacity="0"/>
+                <circle cx="128" cy="146" r="6" class="bulb-glass" fill="#FFF7DE" stroke="#C99842" stroke-width="1"/>
+              </g>
+              <!-- Bulb 9 -->
+              <g class="vanity-bulb" id="v-bulb-9" data-cx="128" data-cy="90">
+                <circle cx="128" cy="90" r="14" class="bulb-glow" fill="url(#bulbGlowGrad)" opacity="0"/>
+                <circle cx="128" cy="90" r="6" class="bulb-glass" fill="#FFF7DE" stroke="#C99842" stroke-width="1"/>
+              </g>
+              <!-- Bulb 10 -->
+              <g class="vanity-bulb" id="v-bulb-10" data-cx="161" data-cy="44">
+                <circle cx="161" cy="44" r="14" class="bulb-glow" fill="url(#bulbGlowGrad)" opacity="0"/>
+                <circle cx="161" cy="44" r="6" class="bulb-glass" fill="#FFF7DE" stroke="#C99842" stroke-width="1"/>
+              </g>
+            </g>
+
+            <!-- Lipstick rolling on table -->
+            <g id="rolling-lipstick" class="rolling-lipstick-group">
+              <!-- Golden tube -->
+              <rect x="250" y="210" width="18" height="7" fill="#DCA23E" rx="2"/>
+              <!-- Red tip -->
+              <path d="M268 211 L274 213.5 L268 216 Z" fill="#D85C77"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- The Handwritten Paper Note Pinned to the Screen -->
+        <article class="handwritten-paper-note ps-note" id="ps-paper-note">
+          <div class="paper-pin" aria-hidden="true"></div>
+          <header class="note-header">
+            <h3 class="note-title">P.S.</h3>
+          </header>
+          <div class="note-body">
+            <p class="ps-line" id="ps-line-1">I know your fest is on Friday. After all those exams, you’ve earned a day to let loose.</p>
+            <p class="ps-line" id="ps-line-2">Wear the best outfit you own. Do your makeup exactly the way you love it. Dance until your feet complain, laugh with your girls until your cheeks hurt, and take a thousand photos.</p>
+            <p class="ps-line" id="ps-line-3">Be loud. Be sparkly. Be completely yourself.</p>
+            <p class="ps-line" id="ps-line-4">This is your girls’ day. Enjoy every minute of it, my love.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SCENE 6: The P.P.S. & Closing
+         ========================================== -->
+    <section class="scene scene-6" id="scene-6" aria-label="P.P.S. Note and Photo Request">
+      <div class="scene-content scene-camera-wrapper">
+
+        <!-- Illustrated Instant Camera on Ledge -->
+        <div class="camera-stage" aria-hidden="true">
+          <div class="instant-camera" id="instant-camera">
+            <svg class="camera-svg" viewBox="0 0 160 140" id="camera-svg">
+              <defs>
+                <linearGradient id="camBodyGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#FDFBF7"/>
+                  <stop offset="100%" stop-color="#EADBCE"/>
+                </linearGradient>
+                <radialGradient id="camLensGrad" cx="45%" cy="40%" r="55%">
+                  <stop offset="0%" stop-color="#4F4457"/>
+                  <stop offset="60%" stop-color="#2A2230"/>
+                  <stop offset="100%" stop-color="#140E1A"/>
+                </radialGradient>
+              </defs>
+              <!-- Camera Body -->
+              <rect x="15" y="25" width="130" height="105" rx="16" fill="url(#camBodyGrad)" stroke="#D8C7B8" stroke-width="2"/>
+              <!-- Pastel Stripe Accent -->
+              <rect x="15" y="55" width="130" height="8" fill="#C87479"/>
+              <rect x="15" y="63" width="130" height="5" fill="#E6AF5C"/>
+              <!-- Viewfinder Window -->
+              <rect x="28" y="34" width="18" height="13" rx="3" fill="#3D3242" stroke="#FAF1E8" stroke-width="1.5"/>
+              <!-- Flash Unit Window -->
+              <rect x="110" y="34" width="22" height="15" rx="3" id="camera-flash-unit" fill="#FFFCEB" stroke="#DCA23E" stroke-width="1.5"/>
+              <circle cx="121" cy="41" r="4" fill="#FFE28C"/>
+              <!-- Shutter Button -->
+              <rect x="32" y="19" width="14" height="6" rx="2" fill="#A44E57"/>
+              <!-- Big Lens -->
+              <circle cx="80" cy="85" r="32" fill="#E5D6C8" stroke="#D1BEAD" stroke-width="2"/>
+              <circle cx="80" cy="85" r="26" fill="url(#camLensGrad)"/>
+              <circle cx="80" cy="85" r="18" fill="#1B1421"/>
+              <!-- Lens reflection glint -->
+              <ellipse cx="73" cy="78" rx="6" ry="3" fill="#FFF" opacity="0.45" transform="rotate(-30 73 78)"/>
+              <!-- Polaroid Ejection Slot at Bottom -->
+              <rect x="35" y="127" width="90" height="4" rx="2" fill="#33242B"/>
+            </svg>
+
+            <!-- Animated Polaroid Film that slides out -->
+            <div class="polaroid-card" id="polaroid-card">
+              <div class="polaroid-frame">
+                <div class="polaroid-photo" id="polaroid-photo">
+                  <div class="polaroid-glow-art"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The P.P.S. Paper Note -->
+        <article class="handwritten-paper-note pps-note" id="pps-paper-note">
+          <div class="paper-pin" aria-hidden="true"></div>
+          <header class="note-header">
+            <h3 class="note-title">P.P.S.</h3>
+          </header>
+          <div class="note-body">
+            <p class="pps-line" id="pps-line-1">Before you head out, would you send me a photo?</p>
+            <p class="pps-line" id="pps-line-2">I’d love to see the beauty you are today. It would make my whole day.</p>
+            <p class="pps-line" id="pps-line-3">Just one. (Okay, maybe five.)</p>
+          </div>
+
+          <!-- Photo WhatsApp Action Button -->
+          <div class="pps-action-wrapper">
+            <a href="#" id="send-photo-btn" class="btn-send-photo" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" class="photo-cam-icon" aria-hidden="true">
+                <path fill="currentColor" d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4z"/>
+                <path fill="currentColor" d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+              </svg>
+              <span>Send me a photo</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Final Handwritten Signature & Closing -->
+        <footer class="closing-section" id="closing-section">
+          <div class="signature-line" id="signature-author">— Kamran</div>
+          <div class="signature-closing-line" id="signature-date-line">Saturday can’t come soon enough.</div>
+          <div class="closing-ambient-lanterns" aria-hidden="true">
+            <span class="ambient-glow-dot dot-1"></span>
+            <span class="ambient-glow-dot dot-2"></span>
+            <span class="ambient-glow-dot dot-3"></span>
+          </div>
+        </footer>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modular Scripts -->
+  <script src="scripts/particles.js"></script>
+  <script src="scripts/scenes/envelope.js"></script>
+  <script src="scripts/scenes/calendar.js"></script>
+  <script src="scripts/scenes/street.js"></script>
+  <script src="scripts/scenes/question.js"></script>
+  <script src="scripts/scenes/yes.js"></script>
+  <script src="scripts/scenes/mirror.js"></script>
+  <script src="scripts/scenes/camera.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>
